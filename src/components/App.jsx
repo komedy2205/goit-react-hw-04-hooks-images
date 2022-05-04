@@ -55,15 +55,15 @@ export function App() {
         });
     };
 
-    if (prevState.imageName !== imageName ||
-      prevState.page !== page
-    ) {
-      getImages(imageName, page)
-        .then(image =>
-          setImages([...images, ...image.hits]))
-        .catch(showError)
-        .finally(() => this.setState({ loading: false }));
-    }
+    // if (prevState.imageName !== imageName ||
+    //   prevState.page !== page
+    // ) {
+    //   getImages(imageName, page)
+    //     .then(image =>
+    //       setImages([...images, ...image.hits]))
+    //     .catch(showError)
+    //     .finally(() => this.setState({ loading: false }));
+    // }
   }, [images, imageName, page]);
 
   return (
