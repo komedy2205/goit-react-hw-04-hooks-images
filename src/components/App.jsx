@@ -60,13 +60,13 @@ export function App() {
     if (setImageName !== imageName ||
       setPage !== page
     ) {
-      getImages(imageName, page)
+      getImages(setImageName, setPage)
         .then(image =>
           setImages([...images, ...image.hits]))
         .catch(showError)
         .finally(() => setLoading(false));
     }
-  }, [images, imageName, page]);
+  }, [imageName, images, page]);
 
   return (
     <Container>
