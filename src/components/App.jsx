@@ -27,7 +27,7 @@ export function App() {
   };
 
   const pageChange = () => {
-    setPage(prevState => [prevState.page + 1 ]);
+    setPage(page + 1 );
   };
 
   const toggleModal = () => {
