@@ -1,9 +1,9 @@
 import React from 'react';
+import ImageGalleryItem from './ImageGalleryItem';
 import { ImageList } from '../styles';
 
-import ImageGalleryItem from './ImageGalleryItem';
 
-function ImageGallery({ images, onImgClick }) {
+export default function ImageGallery({ images, onImgClick }) {
   return (
     <ImageList>
       {images.map(({ id, largeImageURL, webformatURL, tags }) => (
@@ -17,6 +17,4 @@ function ImageGallery({ images, onImgClick }) {
       ))}
     </ImageList>
   );
-}
-
-export default ImageGallery;
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageListItem, Image } from '../styles';
 
-const ImageGalleryItem = ({ image, tags, onSelect, largeImageURL }) => {
+export default function ImageGalleryItem ({ image, tags, onSelect, largeImageURL })  {
   return (
     <>
       <ImageListItem>
@@ -10,5 +10,3 @@ const ImageGalleryItem = ({ image, tags, onSelect, largeImageURL }) => {
     </>
   );
 };
-
-export default ImageGalleryItem;

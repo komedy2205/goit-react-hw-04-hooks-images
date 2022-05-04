@@ -1,37 +1,34 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { SearchBlock, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from '../styles';
 
-class Searchbar extends Component {
-  state = {
-    imageName: '',
-  };
+export default function ImageFinder({ onSubmit }) {
+  const [imageName, setImageName] = useState('');
 
-  handleChangeName = e => {
-    this.setState({ imageName: e.target.value.toLowerCase() });
-  };
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
-    if (this.state.imageName.trim() === '') {
+    if (imageName.trim() === '') {
       return alert('Введите критерий поиска изображения');
     }
 
-    this.props.onSubmit(this.state.imageName);
-    this.setState({ imageName: '' });
+    onSubmit(imageName);
+    setImageName('');
   };
 
-  render() {
-    return (
+  const handleChangeName = e => {
+    setImageName(e.target.value.toLowerCase());
+  };
+
+  return (
       <SearchBlock>
-        <SearchForm onSubmit={this.handleSubmit}>
+        <SearchForm onSubmit={handleSubmit}>
           <SearchFormInput
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            onChange={this.handleChangeName}
-            value={this.state.imageName}
+            onChange={handleChangeName}
+            value={imageName}
           />
 
           <SearchFormButton type="submit" >
@@ -39,8 +36,48 @@ class Searchbar extends Component {
           </SearchFormButton>
         </SearchForm>
       </SearchBlock>
-    );
-  }
+  );
 }
+// class Searchbar extends Component {
+//   state = {
+//     imageName: '',
+//   };
 
-export default Searchbar;
+  // handleChangeName = e => {
+  //   this.setState({ imageName: e.target.value.toLowerCase() });
+  // };
+
+  // handleSubmit = event => {
+  //   event.preventDefault();
+
+  //   if (this.state.imageName.trim() === '') {
+  //     return alert('Введите критерий поиска изображения');
+  //   }
+
+  //   this.props.onSubmit(this.state.imageName);
+  //   this.setState({ imageName: '' });
+  // };
+
+//   render() {
+//     return (
+      // <SearchBlock>
+      //   <SearchForm onSubmit={this.handleSubmit}>
+      //     <SearchFormInput
+      //       type="text"
+      //       autoComplete="off"
+      //       autoFocus
+      //       placeholder="Search images and photos"
+      //       onChange={this.handleChangeName}
+      //       value={this.state.imageName}
+      //     />
+
+      //     <SearchFormButton type="submit" >
+      //       <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+      //     </SearchFormButton>
+      //   </SearchForm>
+      // </SearchBlock>
+//     );
+//   }
+// }
+
+// export default Searchbar;
