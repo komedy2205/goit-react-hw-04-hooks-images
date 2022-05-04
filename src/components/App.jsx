@@ -66,6 +66,7 @@ export function App() {
         .catch(showError)
         .finally(() => setLoading(false));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageName, page]);
 
   return (
