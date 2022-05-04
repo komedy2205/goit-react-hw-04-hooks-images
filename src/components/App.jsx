@@ -36,12 +36,14 @@ export function App() {
   };
 
   const showError = () => {
-    alert('Oooops, somethig went wrong!')
+    alert('Oooops, something went wrong!')
   };
 
-  
-
   useEffect(() => {
+    if (imageName === '') {
+      return;
+    }
+
     const getImages = () => {
       setLoading(true);
 
@@ -55,15 +57,15 @@ export function App() {
         });
     };
 
-    // if (prevState.imageName !== imageName ||
-    //   prevState.page !== page
-    // ) {
-    //   getImages(imageName, page)
-    //     .then(image =>
-    //       setImages([...images, ...image.hits]))
-    //     .catch(showError)
-    //     .finally(() => this.setState({ loading: false }));
-    // }
+    if (setImageName !== imageName ||
+      setPage !== page
+    ) {
+      getImages(imageName, page)
+        .then(image =>
+          setImages([...images, ...image.hits]))
+        .catch(showError)
+        .finally(() => setLoading(false));
+    }
   }, [images, imageName, page]);
 
   return (
