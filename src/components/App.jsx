@@ -66,7 +66,7 @@ export function App() {
         .catch(showError)
         .finally(() => setLoading(false));
     }
-  }, [imageName, images, page]);
+  }, [imageName, page]);
 
   return (
     <Container>
