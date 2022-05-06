@@ -6,17 +6,20 @@ const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal ({onClose, children}) {
 
-    const handleKeyDown = e => {
-        console.log(e)
-        if (e.code === 'Escape') {
-            onClose();
-        }
-    };
-    
-    useEffect(()=>{
-        window.addEventListener('keydown', handleKeyDown)
-        window.removeEventListener('keydown', handleKeyDown)
-    }, [handleKeyDown])
+    useEffect(() => {
+        const handleKeyDown = e => {
+            console.log(e);
+            if (e.code === 'Escape') {
+                onClose();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    });
     
 
     const handleBackdropClick = event => {
@@ -25,11 +28,11 @@ export default function Modal ({onClose, children}) {
         }
     };
 
-        return createPortal(
-            <Overlay onClick={handleBackdropClick}>
-                <Modals className="modal">
-                    {children}
-                </Modals>
-            </Overlay>
-            , modalRoot);
+    return createPortal(
+        <Overlay onClick={handleBackdropClick}>
+            <Modals className="modal">
+                {children}
+            </Modals>
+        </Overlay>
+        , modalRoot);
 };

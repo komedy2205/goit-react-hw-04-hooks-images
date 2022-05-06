@@ -14,6 +14,7 @@ export function App() {
   const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isVisible, setIsVisible] = useState(0);
 
   const handleFormChange = data => {
     setImageName(data)
@@ -58,11 +59,12 @@ export function App() {
     };
 
     if (setImageName !== imageName ||
-      setPage !== page
-    ) {
+      setPage !== page) {
       getImages(setImageName, setPage)
-        .then(image =>
-          setImages([...images, ...image.hits]))
+        .then(image => {
+          setIsVisible(image.hits.length);
+          setImages([...images, ...image.hits]);
+        })
         .catch(showError)
         .finally(() => setLoading(false));
     }
@@ -75,7 +77,7 @@ export function App() {
       <Searchbar onSubmit={handleFormChange} />
       <ImageGallery images={images} onImgClick={selectImage} />
         
-      {(images.length > 0) && <Button onClick={pageChange}></Button>}
+      {(isVisible > 0) && <Button onClick={pageChange}></Button>}
 
       {loading && <Loader />}
 
